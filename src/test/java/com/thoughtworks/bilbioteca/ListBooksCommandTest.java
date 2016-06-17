@@ -7,7 +7,7 @@ import static org.mockito.Mockito.verify;
 
 public class ListBooksCommandTest {
     @Test
-    public void test() {
+    public void shouldTellLibraryToListBooksWhenExecuting() {
         Library library = mock(Library.class);
 
         ListBooksCommand listBooksCommand = new ListBooksCommand(library);

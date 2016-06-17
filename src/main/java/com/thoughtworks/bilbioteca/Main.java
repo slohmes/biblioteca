@@ -20,8 +20,7 @@ public class Main {
         Map<String, Command> menuCommands = new HashMap<>();
         menuCommands.put("1", new ListBooksCommand(library));
 
-
-        MainMenu mainMenu = new MainMenu(printStream, bufferReader, library, menuCommands);
-        new Application(printStream, mainMenu).start();
+        MainMenu mainMenu = new MainMenu(printStream, bufferReader);
+        new Application(printStream, mainMenu, menuCommands).start();
     }
 }

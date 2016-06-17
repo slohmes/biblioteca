@@ -20,14 +20,13 @@ public class MainMenuTest {
     private MainMenu mainMenu;
     private BufferedReader bufferReader;
     private Library library;
-    private Map<String, Command> menuCommands = new HashMap<>();
 
     @Before
     public void setUp() {
         printStream = mock(PrintStream.class);
         bufferReader = mock(BufferedReader.class);
         library = mock(Library.class);
-        mainMenu = new MainMenu(printStream, bufferReader, library, menuCommands);
+        mainMenu = new MainMenu(printStream, bufferReader);
     }
     @Test
     public void shouldDisplayMenuOptionsWhenShowMainMenuIsCalled() {
@@ -36,34 +35,10 @@ public class MainMenuTest {
     }
 
     @Test
-    public void shouldCallSelectMenuItemOneWhenUserEnterOne() throws IOException {
-        when(bufferReader.readLine()).thenReturn("1", "2");
-        mainMenu.figureOutWhatMenuItemToSelect();
-        verify(menuCommands).get("1").executeSelection();
-    }
-
-    @Test
-    public void shouldPromptForValidInputWhenUserEntersAnInvalidInteger() throws IOException {
-        when(bufferReader.readLine()).thenReturn("0", "2");
-        mainMenu.figureOutWhatMenuItemToSelect();
-        verify(printStream).println("Select a valid option!");
-    }
-
-    @Test
-    public void shouldPromptForValidInputWhenUserEntersANoninteger() throws IOException {
-        when(bufferReader.readLine()).thenReturn("BAD INPUT", "2");
-        mainMenu.figureOutWhatMenuItemToSelect();
-        verify(printStream).println("Select a valid option!");
-
-    }
-    
-    @Test
-    public void shouldQuitWhenUserSelectsQuit() throws IOException {
-        when(bufferReader.readLine()).thenReturn("2");
-
-        mainMenu.figureOutWhatMenuItemToSelect();
-
-        verifyZeroInteractions(menuCommands.get("1"));
+    public void shouldRequestUserInputWhenUserEntersInput() throws IOException {
+        when(bufferReader.readLine()).thenReturn("1");
+        mainMenu.getUserInput();
+        verify(bufferReader).readLine();
     }
 
 }
