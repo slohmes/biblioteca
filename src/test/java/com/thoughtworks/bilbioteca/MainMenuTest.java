@@ -33,7 +33,6 @@ public class MainMenuTest {
         verify(printStream).println("1. List Books");
     }
 
-
     @Test
     public void shouldCallSelectMenuItemOneWhenUserEnterOne() throws IOException {
         when(bufferReader.readLine()).thenReturn("1");
@@ -41,5 +40,27 @@ public class MainMenuTest {
         verify(library).listBooksWithDetails();
     }
 
+    @Test
+    public void shouldPromptForValidInputWhenUserEntersAnInvalidInteger() throws IOException {
+        when(bufferReader.readLine()).thenReturn("0", "1");
+        mainMenu.figureOutWhatMenuItemToSelect();
+        verify(printStream).println("Select a valid option!");
+    }
+
+    @Test
+    public void shouldPromptForValidInputWhenUserEntersANoninteger() throws IOException {
+        when(bufferReader.readLine()).thenReturn("BAD INPUT", "1");
+        mainMenu.figureOutWhatMenuItemToSelect();
+        verify(printStream).println("Select a valid option!");
+
+    }
+    
+    @Test
+    public void shouldQuitWhenUserSelectsQuit() {
+
+        mainMenu.figureOutWhatMenuItemToSelect();
+
+        ve
+    }
 
 }

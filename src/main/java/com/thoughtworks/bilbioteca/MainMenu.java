@@ -19,23 +19,23 @@ public class MainMenu {
     }
     public void showMainMenu() {
         printStream.println("1. List Books");
+        printStream.println("\nPlease enter the number for the corresponding option you want:");
     }
 
-    public void selectMenuItemOne(){
-        library.listBooksWithDetails();
-    }
+//    public void selectMenuItemOne(){
+//        library.listBooksWithDetails();
+//    }
 
     public void figureOutWhatMenuItemToSelect() {
-        printStream.println("Please enter the number for the corresponding option you want.");
-        int userInput = getUserInput();
-        if(userInput == 1) {
-            selectMenuItemOne();
-        }
-    }
+        String  userInput = readLine();
 
-    private int getUserInput() {
-        int userInput = parseInt(readLine());
-        return userInput;
+        while (!userInput.equals("1")) {
+            printStream.println("Select a valid option!");
+            userInput = readLine();
+
+        }
+        library.listBooksWithDetails();
+
     }
 
     private String readLine() {
@@ -45,5 +45,10 @@ public class MainMenu {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void start(){
+        showMainMenu();
+        figureOutWhatMenuItemToSelect();
     }
 }

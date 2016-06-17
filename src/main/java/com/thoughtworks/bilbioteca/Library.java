@@ -12,6 +12,9 @@ public class Library{
 
 
     public void listBooksWithDetails() {
-        books.forEach(Book::printBookDetails);
+
+        for (Book book : books) {
+            book.printBookDetails();
+        }
     }
 }
