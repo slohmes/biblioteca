@@ -16,7 +16,12 @@ public class Main {
         books.add(theDay);
         Library library = new Library(books);
         BufferedReader bufferReader = new BufferedReader(new InputStreamReader(System.in));
-        MainMenu mainMenu = new MainMenu(printStream, bufferReader, library);
+
+        Map<String, Command> menuCommands = new HashMap<>();
+        menuCommands.put("1", new ListBooksCommand(library));
+
+
+        MainMenu mainMenu = new MainMenu(printStream, bufferReader, library, menuCommands);
         new Application(printStream, mainMenu).start();
     }
 }

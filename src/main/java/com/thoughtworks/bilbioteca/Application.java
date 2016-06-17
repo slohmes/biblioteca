@@ -12,8 +12,11 @@ public class Application {
     }
     public void start() {
         printStream.println("Welcome");
+
+
         mainMenu.showMainMenu();
         mainMenu.figureOutWhatMenuItemToSelect();
-        //printStream.println("Quitting Application");
+
+
     }
 }
